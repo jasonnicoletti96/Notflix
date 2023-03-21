@@ -1,0 +1,36 @@
+<div
+  class="w-80 h-80 flex relative card overflow-hidden cursor-pointer"
+
+>
+  <button
+    [ngClass]="
+      checkFavoris(film!)
+        ? ' border-yellow-400 bg-opacity-400 bg-yellow-400 text-black'
+        : 'text-gray-300'
+    "
+    class="px-2 outline-none cursor-pointer border border-gray-300 absolute bottom-5 right-5 z-30 rounded-full text-sm ransition-all"
+    (click)="addToFavoris(film!)"
+  >
+    favoris
+  </button>
+  <div
+    class="absolute left-5 bottom-5 z-20 card-content transition-all duration-200 "
+  >
+    <h1 class="text-xl text-[#E50914] font-bold">{{ film!.Title }}</h1>
+    <p class="text-lg text-white">{{ film!.Year }}</p>
+    <ul class="flex mt-4">
+      <li class="text-sm text-white mr-3 bg-[#E50914] px-2 rounded-xl">
+        {{ film!.Type }}
+      </li>
+    </ul>
+  </div>
+  <img
+    [src]="film!.Poster !== 'N/A' ? film!.Poster : defaultImg"
+    alt="poster"
+    class="absolute z-0 top-0 left-0 w-full"
+  />
+  <a
+    class="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black to-[#0000004d] z-10 block"
+    [routerLink]="link ? '/film/' + film!.imdbID : './'"
+  ></a>
+</div>

@@ -1,0 +1,33 @@
+<div>
+  <div class="mt-5 w-full px-10 flex">
+    <input
+      type="text"
+      class="w-52 outline-none bg-transparent border-b-2 border-[#E50914] text-white py-1"
+      placeholder="Default : aaa (Min. 3 letters)"
+      [(ngModel)]="search"
+      (keyup)="getFilms(search, year)"
+    />
+    <select
+      class="w-52 outline-none bg-[#1b1b1b] border-b-2 border-[#E50914] text-white py-1 ml-5 disabled:text-gray-700"
+      [(ngModel)]="year"
+      (change)="getFilms(search, year)"
+      [disabled]="search.length < 3"
+    >
+      <option value="">All</option>
+      <option *ngFor="let year of yearList" [value]="year">{{ year }}</option>
+    </select>
+  </div>
+  <div *ngIf="listFilm != []" class="flex flex-wrap w-full gap-11 p-11">
+    <ng-container *ngFor="let film of listFilm">
+      <app-card [film]="film"></app-card>
+    </ng-container>
+  </div>
+  <div *ngIf="nb > 10" class="w-full flex justify-center text-3xl">
+    <button
+      class="text-[#E50914] flex justify-center mb-2 font-bold px-4 py-2 rounded-xl relative after:absolute after:bg-[#E50914] after:w-0 after:h-1 after:rounded-md after:bottom-0 after:transition-all after:duration-150 hover:after:w-full"
+      (click)="addMore()"
+    >
+      {{ loading ? "loading..." : "Load more" }}
+    </button>
+  </div>
+</div>

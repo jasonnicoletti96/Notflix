@@ -1,0 +1,26 @@
+<div *ngIf="loadFavoris() != null || []">
+  <div class="mt-5 w-full px-10 flex">
+    <input
+      type="text"
+      class="w-52 outline-none bg-transparent border-b-2 border-[#E50914] text-white py-1"
+      placeholder="Search"
+      [(ngModel)]="search"
+      (keyup)="filter(search, year)"
+    />
+    <select
+      class="w-52 outline-none bg-[#1b1b1b] border-b-2 border-[#E50914] text-white py-1 ml-5"
+      [(ngModel)]="year"
+      (change)="filter(search, year)"
+    >
+      <option value="">All</option>
+      <option *ngFor="let year of yearList" [value]="year">{{ year }}</option>
+    </select>
+  </div>
+  <div>
+    <div class="flex flex-wrap w-full gap-11 p-11">
+      <ng-container *ngFor="let film of favorisShow">
+        <app-card [film]="film"></app-card>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+  background-color: #1b1b1b;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Appliquer une scrollbar personnalisée à l'ensemble de la page */
+body::-webkit-scrollbar {
+  width: 10px; /* largeur de la scrollbar */
+}
+
+/* Définir l'apparence de la poignée de la scrollbar */
+body::-webkit-scrollbar-thumb {
+  background-color: #E50914; /* couleur de la poignée */
+  border-radius: 5px; /* bord arrondi */
+}
+
+/* Définir l'apparence de la trajectoire de la scrollbar */
+body::-webkit-scrollbar-track {
+  background-color: transparent; /* couleur de fond transparente */
+}

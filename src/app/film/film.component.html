@@ -1,0 +1,100 @@
+<div
+  class="flex w-full items-center lg:items-start lg:justify-between mt-5 flex-col lg:flex-row"
+  *ngIf="!loading && film"
+>
+  <div class="w-2/5 flex justify-center mb-10">
+    <app-card [film]="filmCard" [link]="false"></app-card>
+  </div>
+
+  <div class="flex flex-col w-full relative mb-5 lg:w-3/5 lg:pr-5 px-5">
+    <h1 class="text-2xl text-[#E50914] font-bold">{{ film!.Title }}</h1>
+    <p class="text-lg text-white mt-5">{{ film!.Plot }}</p>
+    <div class="flex mt-5 w-full justify-between lg:justify-start">
+      <div class="flex flex-col mr-5 w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Director</p>
+        <p class="text-lg text-white">{{ film!.Director ?? "N/A" }}</p>
+      </div>
+      <div class="flex flex-col w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Writer</p>
+        <p class="text-lg text-white">{{ film!.Writer ?? "N/A" }}</p>
+      </div>
+    </div>
+
+    <div class="flex mt-5 w-full justify-between lg:justify-start">
+      <div class="flex flex-col mr-5 w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Actors</p>
+        <p class="text-lg text-white">{{ film!.Actors ?? "N/A" }}</p>
+      </div>
+      <div class="flex flex-col w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Awards</p>
+        <p class="text-lg text-white">{{ film!.Awards ?? "N/A" }}</p>
+      </div>
+    </div>
+    <div class="flex mt-5 w-full justify-between lg:justify-start">
+      <div class="flex flex-col mr-5 w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Genre</p>
+        <p class="text-lg text-white">{{ film!.Genre ?? "N/A" }}</p>
+      </div>
+      <div class="flex flex-col w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Country</p>
+        <p class="text-lg text-white">{{ film!.Country ?? "N/A" }}</p>
+      </div>
+    </div>
+    <div class="flex mt-5 w-full justify-between lg:justify-start">
+      <div class="flex flex-col mr-5 w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Language</p>
+        <p class="text-lg text-white">{{ film.Language ?? "N/A" }}</p>
+      </div>
+      <div class="flex flex-col w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">DVD</p>
+        <p class="text-lg text-white">{{ film.DVD ?? "N/A" }}</p>
+      </div>
+    </div>
+    <div class="flex mt-5 w-full justify-between lg:justify-start">
+      <div class="flex flex-col mr-5 w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Released</p>
+        <p class="text-lg text-white">{{ film.Released ?? "N/A" }}</p>
+      </div>
+      <div class="flex flex-col w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Runtime</p>
+        <p class="text-lg text-white">{{ film.Runtime ?? "N/A" }}</p>
+      </div>
+    </div>
+    <div class="flex mt-5 w-full justify-between lg:justify-start">
+      <div class="flex flex-col mr-5 w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">BoxOffice</p>
+        <p class="text-lg text-white">{{ film.BoxOffice ?? "N/A" }}</p>
+      </div>
+      <div class="flex flex-col w-2/5">
+        <p class="text-lg text-[#E50914] w-1/2">Production</p>
+        <p class="text-lg text-white">{{ film.Production ?? "N/A" }}</p>
+      </div>
+    </div>
+    <!-- Ratings-->
+    <div class="flex mt-5 w-full justify-between lg:justify-start">
+      <div class="flex flex-col mr-5 w-full">
+        <p class="text-lg text-[#E50914] w-1/2">Ratings</p>
+        <div class="flex flex-col" *ngIf="film.Ratings.length">
+          <div class="flex" *ngFor="let rating of film.Ratings">
+            <p class="text-lg text-white">{{ rating.Source }} :</p>
+            <p class="text-lg ml-2 font-semibold text-white">
+              {{ rating.Value }}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col" *ngIf="!film.Ratings.length">
+          <p class="text-lg text-white">No ratings</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loading" class="w-full h-full flex justify-center mt-40">
+  <h1 class="text-2xl text-[#E50914] font-bold">loading</h1>
+</div>
+
+<div *ngIf="!film && !loading" class="w-full h-full flex justify-center mt-40">
+  <h1 class="text-2xl text-[#E50914] font-bold">Film not found</h1>
+</div>
